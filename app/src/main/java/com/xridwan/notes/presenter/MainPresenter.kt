@@ -9,8 +9,10 @@ class MainPresenter(val mainView: MainView) {
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val noinline = mutableListOf<Note>()
+
                 if (snapshot.exists()){
                     noinline.clear()
+
                     for (ds in snapshot.children) {
                         val note = ds.getValue(Note::class.java)
                         if (note != null) {
